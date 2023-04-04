@@ -71,8 +71,6 @@ namespace PosMaster
 
             DalamudApi.Initialize(this, pluginInterface);
             PosEdit.Initialize();
-
-            MainWindow.IsOpen = true;
         }
 
         public void Dispose()
