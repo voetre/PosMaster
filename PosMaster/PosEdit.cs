@@ -164,7 +164,6 @@ namespace PosMaster
                 configuration = PosMaster.Plugin.PosMasterConfiguration;
                 flyingAddress = DalamudApi.SigScanner.GetStaticAddressFromSig("E8 ?? ?? ?? ?? F6 40 70 01", 39);
                 PositionVector = new Vector3(X, Y, Z);
-                PosMaster.PrintError($"{PlayerX}");
             }
             catch
             {
