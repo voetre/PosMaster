@@ -1,13 +1,13 @@
 {
-  "Author": "your name here",
-  "Name": "Sample Plugin",
-  "Punchline": "A short one-liner that shows up in /xlplugins.",
-  "Description": "A description that shows up in /xlplugins. List any major slash-command(s).",
-  "InternalName": "samplePlugin",
+  "Author": "voetre",
+  "Name": "Position Master",
+  "Punchline": "A position hack tool.",
+  "Description": "its a position hack, dont use it if you arent okay with that fact...",
+  "InternalName": "PosMaster",
   "ApplicableVersion": "any",
   "Tags": [
-    "sample",
-    "plugin",
-    "goats"
+    "Position",
+    "PosMaster",
+    "PosHack"
   ]
 }
