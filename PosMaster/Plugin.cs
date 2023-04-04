@@ -1,14 +1,10 @@
 using Dalamud.Game.Command;
 using Dalamud.IoC;
 using Dalamud.Plugin;
-using System.IO;
 using Dalamud.Interface.Windowing;
 using PosMaster.Windows;
 using Lumina.Excel.GeneratedSheets;
 using System;
-using FFXIVClientStructs.FFXIV.Common.Math;
-using System.Linq;
-using System.Runtime.CompilerServices;
 
 namespace PosMaster
 {

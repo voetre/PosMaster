@@ -1,13 +1,14 @@
 {
-  "Author": "voetre",
-  "Name": "Position Master",
-  "Punchline": "A position hack tool.",
-  "Description": "its a position hack, dont use it if you arent okay with that fact...",
-  "InternalName": "PosMaster",
-  "ApplicableVersion": "any",
-  "Tags": [
-    "Position",
-    "PosMaster",
-    "PosHack"
-  ]
+    "Author": "voetre",
+    "Name": "Position Master",
+    "Punchline": "A position hack tool.",
+    "Description": "its a position hack, dont use it if you arent okay with that fact...",
+    "IconUrl": "https://raw.githubusercontent.com/voetre/PosMaster/master/PosMaster/Images/PosMasterIcon.png",
+    "InternalName": "PosMaster",
+    "ApplicableVersion": "any",
+    "Tags": [
+        "Position",
+        "PosMaster",
+        "PosHack"
+    ]
 }
