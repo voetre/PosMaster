@@ -16,7 +16,6 @@ namespace PosMaster
         private static Configuration configuration;
         public static bool Ready => DalamudApi.ClientState.LocalPlayer != null;
         public static IntPtr PlayerAddress => DalamudApi.ClientState.LocalPlayer.Address;
-        public static Vector3 PositionVector = new Vector3();
         public static IntPtr flyingAddress = IntPtr.Zero;
         public static unsafe ref float PlayerX => ref ((GameObject*)PlayerAddress)->Position.X;
         public static unsafe ref float PlayerY => ref ((GameObject*)PlayerAddress)->Position.Y;
@@ -135,35 +134,23 @@ namespace PosMaster
             try
             {
                 var ListItem = configuration.SavedPositions.Find(x => x.Name == name);
-                if (ListItem == null) return;
-                if (ListItem.IgnoreZone)
-                {
-                    PosMaster.PrintError("ignored zone");
-                    X = ListItem.Position.X;
-                    Y = ListItem.Position.Y;
-                    Z = ListItem.Position.Z;
-                }
-                if (DalamudApi.DataManager.GetExcelSheet<TerritoryType>()!.GetRow(DalamudApi.ClientState.TerritoryType)!.PlaceName.Row == ListItem.Zone)
-                {
-                    PosMaster.PrintError("Matched zone");
-                    X = ListItem.Position.X;
-                    Y = ListItem.Position.Y;
-                    Z = ListItem.Position.Z;
-                }
-
+                if (ListItem == null || (!ListItem.IgnoreZone && DalamudApi.DataManager.GetExcelSheet<TerritoryType>()!.GetRow(DalamudApi.ClientState.TerritoryType)!.PlaceName.Row != ListItem.Zone)) return;
+                X = ListItem.Position.X;
+                Y = ListItem.Position.Y;
+                Z = ListItem.Position.Z;
             }
             catch (Exception e)
             {
                 PosMaster.PrintError($"Unable to find {name} ({e})");
             }
         }
+
         public static void Initialize()
         {
             try
             {
                 configuration = PosMaster.Plugin.PosMasterConfiguration;
                 flyingAddress = DalamudApi.SigScanner.GetStaticAddressFromSig("E8 ?? ?? ?? ?? F6 40 70 01", 39);
-                PositionVector = new Vector3(X, Y, Z);
             }
             catch
             {

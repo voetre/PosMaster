@@ -94,12 +94,13 @@ public class MainWindow : Window, IDisposable
             ImGui.PushID("##PositionSaverIDPush");
 
             ImGui.Text("Name: ");
+
             ImGui.SameLine();
             ImGui.PushItemWidth(150);
             ImGui.InputText("##PosName", ref PosNameInput, 50);
 
             ImGui.SameLine();
-            ImGui.Text($"Zone: ({(int)territory.PlaceName.Row}) {PosMaster.GetZoneName(territory.PlaceName.Row)}");
+            ImGui.Text($"Zone: ({(int)territory.PlaceName.Row }) {PosMaster.GetZoneName(territory.PlaceName.Row)}");
 
             ImGui.SameLine();
             ImGui.Checkbox("Ignore", ref IgnoreZone);
@@ -169,10 +170,10 @@ public class MainWindow : Window, IDisposable
                 }
 
                 void PositionTableRow(
-                                string Name,
-                                int Zone,
-                                Vector3 Position,
-                                bool IgnoreZone)
+                string Name,
+                int Zone,
+                Vector3 Position,
+                bool IgnoreZone)
                 {
 
                     ImGui.PushID(Name);
@@ -209,7 +210,6 @@ public class MainWindow : Window, IDisposable
 
                 }
                 ImGui.EndTable();
-                ImGui.EndChild();
             }
         }
         ImGui.EndChild();
