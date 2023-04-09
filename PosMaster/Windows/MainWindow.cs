@@ -42,8 +42,6 @@ public class MainWindow : Window, IDisposable
         x = PosEdit.X;
         y = PosEdit.Y;
         z = PosEdit.Z;
-
-        if (ImGui.Button("fast")) { PosEdit.SetSpeed(4f); }
         if (ImGui.CollapsingHeader("Current Position"))
         {
             ImGui.PushItemWidth(185);

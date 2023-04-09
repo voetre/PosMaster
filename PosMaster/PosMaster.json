@@ -4,7 +4,7 @@
     "Punchline": "A position hack tool.",
     "Description": "its a position hack, dont use it if you arent okay with that fact...",
     "IconUrl": "https://raw.githubusercontent.com/voetre/PosMaster/master/PosMaster/Images/PosMasterIcon.png",
-    "Changelog": "- 1.2.0.0:\n   • implemented speed hack.\n   • 'setpos' has been re-implemented but is now used to set your position on the fly.\n   • 'setpos' command has been renamed to 'loadpos', it is still used the same way.\n- 1.1.0.0:\n   • bug fixes and debug code cleanup.",
+    "Changelog": "- 1.2.1.0:\n   • removed 'fast' button from gui (left over from testing).\n- 1.2.0.0:\n   • implemented speed hack.\n   • 'setpos' has been re-implemented but is now used to set your position on the fly.\n   • 'setpos' command has been renamed to 'loadpos', it is still used the same way.",
     "InternalName": "PosMaster",
     "ApplicableVersion": "any",
     "Tags": [
