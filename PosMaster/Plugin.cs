@@ -5,6 +5,7 @@ using Dalamud.Interface.Windowing;
 using PosMaster.Windows;
 using Lumina.Excel.GeneratedSheets;
 using System;
+using System.Text.RegularExpressions;
 
 namespace PosMaster
 {
@@ -15,6 +16,8 @@ namespace PosMaster
         private const string NudgeFCommand = "/nudgef";
         private const string NudgeUCommand = "/nudgeu";
         private const string SetPosCommand = "/setpos";
+        private const string LoadPosCommand = "/loadpos";
+        private const string SetSpeedCommand = "/setspeed";
 
         public PosEdit position = new PosEdit();
 
@@ -63,7 +66,17 @@ namespace PosMaster
 
             CommandManager.AddHandler(SetPosCommand, new CommandInfo(SetPosCommandHandler)
             {
+                HelpMessage = "set your position using values provided with command args \n example: /setpos 100 50 5"
+            });
+
+            CommandManager.AddHandler(LoadPosCommand, new CommandInfo(LoadPosCommandHandler)
+            {
                 HelpMessage = "Load a saved position by name"
+            });
+
+            CommandManager.AddHandler(SetSpeedCommand, new CommandInfo(SetSpeedCommandHandler)
+            {
+                HelpMessage = "Speed hack, multiplier as arg"
             });
 
             PluginInterface.UiBuilder.Draw += DrawUI;
@@ -83,6 +96,7 @@ namespace PosMaster
             CommandManager.RemoveHandler(NudgeFCommand);
             CommandManager.RemoveHandler(NudgeUCommand);
             CommandManager.RemoveHandler(SetPosCommand);
+            CommandManager.RemoveHandler(LoadPosCommand);
         }
 
         private void OpenPosMaster(string command, string args)
@@ -90,16 +104,35 @@ namespace PosMaster
             MainWindow.IsOpen = true;
         }
 
-        private void SetPosCommandHandler(string command, string args)
+        private void LoadPosCommandHandler(string command, string args)
         {
             PosEdit.LoadAndSetPos(args);
+        }
+
+        private void SetPosCommandHandler(string command, string args)
+        {
+            Match match = Regex.Match(args, "^([-+]?[0-9]*\\.?[0-9]+) ([-+]?[0-9]*\\.?[0-9]+) ([-+]?[0-9]*\\.?[0-9]+)$");
+            if (match.Success)
+            {
+                float result1;
+                float.TryParse(match.Groups[1].Value, out result1);
+                float result2;
+                float.TryParse(match.Groups[2].Value, out result2);
+                float result3;
+                float.TryParse(match.Groups[3].Value, out result3);
+                PosEdit.SetPos(result1, result2, result3);
+            }
+            else
+            {
+                PrintError($"error with arg '{args}'.");
+            }
         }
 
         private void NudgeForwardCommandHandler(string command, string args)
         {
             try
             {
-                PosEdit.NudgeForward(Convert.ToInt32(args));
+                PosEdit.NudgeForward(int.Parse(args));
             }
             catch
             {
@@ -111,7 +144,7 @@ namespace PosMaster
         {
             try
             {
-                PosEdit.NudgeUp(Convert.ToInt32(args));
+                PosEdit.NudgeUp(int.Parse(args));
             }
             catch
             {
@@ -119,6 +152,17 @@ namespace PosMaster
             }
         }
 
+        private void SetSpeedCommandHandler(string command, string args)
+        {
+            try
+            {
+                PosEdit.SetSpeed(float.Parse(args));
+            }
+            catch
+            {
+                PrintError($"error with arg '{args}'. is it a number?");
+            }
+        }
         private void DrawUI()
         {
             WindowSystem.Draw();

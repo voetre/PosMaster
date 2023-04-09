@@ -43,6 +43,7 @@ public class MainWindow : Window, IDisposable
         y = PosEdit.Y;
         z = PosEdit.Z;
 
+        if (ImGui.Button("fast")) { PosEdit.SetSpeed(4f); }
         if (ImGui.CollapsingHeader("Current Position"))
         {
             ImGui.PushItemWidth(185);
@@ -100,7 +101,7 @@ public class MainWindow : Window, IDisposable
             ImGui.InputText("##PosName", ref PosNameInput, 50);
 
             ImGui.SameLine();
-            ImGui.Text($"Zone: ({(int)territory.PlaceName.Row }) {PosMaster.GetZoneName(territory.PlaceName.Row)}");
+            if (territory.PlaceName.Row != null) ImGui.Text($"Zone: ({(int)territory.PlaceName.Row }) {PosMaster.GetZoneName(territory.PlaceName.Row)}");
 
             ImGui.SameLine();
             ImGui.Checkbox("Ignore", ref IgnoreZone);
