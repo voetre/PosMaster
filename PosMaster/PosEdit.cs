@@ -153,7 +153,7 @@ namespace PosMaster
             try
             {
                 configuration = PosMaster.Plugin.PosMasterConfiguration;
-                flyingAddress = DalamudApi.SigScanner.GetStaticAddressFromSig("E8 ?? ?? ?? ?? F6 40 70 01", 39);
+                flyingAddress = DalamudApi.SigScanner.GetStaticAddressFromSig("E8 ?? ?? ?? ?? F6 40 70 01 ?? ?? 48 8B CB E8", 39);
                 DalamudApi.Framework.Update += Update;
             }
             catch

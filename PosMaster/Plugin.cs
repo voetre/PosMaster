@@ -97,6 +97,8 @@ namespace PosMaster
             CommandManager.RemoveHandler(NudgeUCommand);
             CommandManager.RemoveHandler(SetPosCommand);
             CommandManager.RemoveHandler(LoadPosCommand);
+
+            PosEdit.Dispose();
         }
 
         private void OpenPosMaster(string command, string args)
