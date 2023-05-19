@@ -21,9 +21,12 @@ public class MainWindow : Window, IDisposable
     private float y = 0;
     private float z = 0;
 
-    float SliderX = 0.0f;
-    float SliderY = 0.0f;
-    float SliderZ = 0.0f;
+    private float SliderX = 0.0f;
+    private float SliderY = 0.0f;
+    private float SliderZ = 0.0f;
+
+    private bool PreviewPos = false;
+
     public MainWindow(PosMaster plugin) : base(
         "Position Master", ImGuiWindowFlags.NoScrollbar | ImGuiWindowFlags.NoScrollWithMouse | ImGuiWindowFlags.AlwaysAutoResize)
     {
@@ -104,13 +107,13 @@ public class MainWindow : Window, IDisposable
             ImGui.SameLine();
             ImGui.Checkbox("Ignore", ref IgnoreZone);
 
-            ImGui.PushItemWidth(125);
+            ImGui.PushItemWidth(85);
             ImGui.InputFloat("##InputX", ref X);
             ImGui.SameLine();
-            ImGui.PushItemWidth(125);
+            ImGui.PushItemWidth(85);
             ImGui.InputFloat("##InputY", ref Y);
             ImGui.SameLine();
-            ImGui.PushItemWidth(125);
+            ImGui.PushItemWidth(85);
             ImGui.InputFloat("##InputZ", ref Z);
 
             ImGui.SameLine();
@@ -135,7 +138,18 @@ public class MainWindow : Window, IDisposable
                 });
                 configuration.Save();
             }
+
+            ImGui.SameLine();
+            ImGui.Checkbox("Preview Position", ref PreviewPos);
+            if (PreviewPos)
+            {
+                DalamudApi.GameGui.WorldToScreen((new Vector3(X, Y, Z)), out var PreviewDotPos);
+                ImGui.GetBackgroundDrawList().AddCircleFilled(PreviewDotPos, 10, ImGui.GetColorU32(new Vector4(255, 0, 0, 255)));
+                ImGui.GetBackgroundDrawList().AddCircleFilled(PreviewDotPos, 5, ImGui.GetColorU32(new Vector4(255, 255, 255, 255)));
+            }
+
             ImGui.PopID();
+
         }
         if (ImGui.CollapsingHeader("Saved Positions"))
         {
