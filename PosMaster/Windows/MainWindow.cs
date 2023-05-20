@@ -146,6 +146,8 @@ public class MainWindow : Window, IDisposable
                 DalamudApi.GameGui.WorldToScreen((new Vector3(X, Y, Z)), out var PreviewDotPos);
                 ImGui.GetBackgroundDrawList().AddCircleFilled(PreviewDotPos, 10, ImGui.GetColorU32(new Vector4(255, 0, 0, 255)));
                 ImGui.GetBackgroundDrawList().AddCircleFilled(PreviewDotPos, 5, ImGui.GetColorU32(new Vector4(255, 255, 255, 255)));
+                ImGui.GetBackgroundDrawList().AddRectFilled(PreviewDotPos + new Vector2(15, -26), PreviewDotPos + new Vector2(10, -25) + new Vector2(85, 50), ImGui.GetColorU32(new Vector4(0, 0, 0, 255)));
+                ImGui.GetBackgroundDrawList().AddText(PreviewDotPos + new Vector2(20, -24), ImGui.GetColorU32(new Vector4(255, 255, 255, 255)), $"X: {Math.Round((decimal)X, 3)} \nY: {Math.Round((decimal)Y, 3)} \nZ: {Math.Round((decimal)Z, 3)}");
             }
 
             ImGui.PopID();
