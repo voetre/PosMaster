@@ -34,7 +34,7 @@ namespace PosMaster
         private unsafe ref float ModelRotationX => ref (*(float*)(void*)(ModelAddress + 100));
         private unsafe ref float ModelRotationZ => ref (*(float*)(void*)(ModelAddress + 104));
         private unsafe ref float ModelRotationY => ref (*(float*)(void*)(ModelAddress + 108));
-        public static unsafe ref int MovementState => ref (*(int*)(void*)(PlayerAddress + 1508));
+        public static unsafe ref int MovementState => ref (*(int*)(void*)(PlayerAddress + 1532));
         public static float X
         {
             get => PlayerX;
